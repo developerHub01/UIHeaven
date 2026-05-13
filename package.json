@@ -8,7 +8,14 @@
     "start": "next start",
     "lint": "eslint",
     "format": "npx prettier --write .",
-    "db:reset": "npx prisma migrate reset"
+    "db:start": "supabase start",
+    "db:stop": "supabase stop",
+    "db:push": "supabase db push",
+    "db:pull": "prisma db pull && prisma generate",
+    "db:reset": "supabase db reset && prisma db pull && prisma generate",
+    "db:diff": "supabase db diff -f manual_sync",
+    "db:sync": "supabase db push && prisma db pull && prisma generate",
+    "setup": "supabase start && supabase db push && prisma db pull && prisma generate"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.8.0",
